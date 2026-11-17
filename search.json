@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "writing/index.html",
+    "href": "writing/index.html",
+    "title": "Writing",
+    "section": "",
+    "text": "Notes on optimization: models explained with code, algorithms built from scratch, and small experiments.\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "cv.html",
+    "href": "cv.html",
+    "title": "CV",
+    "section": "",
+    "text": "Download CV (PDF)"
+  },
+  {
+    "objectID": "cv.html#education",
+    "href": "cv.html#education",
+    "title": "CV",
+    "section": "Education",
+    "text": "Education\nVirginia Tech, Ph.D., Industrial & Systems Engineering (Operations Research), 2025 to 2029 (expected). GPA 3.78/4.00. Advisor: Manish Bansal.\nNational Institute of Technology Calicut, M.Sc., Mathematics, 2024. GPA 9.64/10, ranked first in the class, Institute Gold Medal.\nSt. Stephen’s College, University of Delhi, B.Sc. (Honours), Mathematics, 2022. GPA 9.216/10."
+  },
+  {
+    "objectID": "cv.html#research-experience",
+    "href": "cv.html#research-experience",
+    "title": "CV",
+    "section": "Research experience",
+    "text": "Research experience\nGraduate Research Assistant, Virginia Tech ISE, 2026 to present. Network interdiction under congestion and distributional ambiguity; risk-averse microgrid scheduling.\nResearch Assistant, IIT Kharagpur, Industrial & Systems Engineering, 2024 to 2025. Game-theoretic supply chain models under demand disruption.\nSummer Research Fellow, IISER Thiruvananthapuram, 2023. Science Academies’ Summer Research Fellowship, one of 63 selected nationwide."
+  },
+  {
+    "objectID": "cv.html#awards",
+    "href": "cv.html#awards",
+    "title": "CV",
+    "section": "Awards",
+    "text": "Awards\n\nMost Engaging Presentation, CCI Southwest Virginia Graduate Student Summit, 2026\nAI-SCORE 2026, selected cohort (UIUC and Chicago)\nInstitute Gold Medal, M.Sc. Mathematics, NIT Calicut, 2024\nGATE 2024 Mathematics, All India Rank 977\nMixed Integer Programming International Workshop, IIT Bombay, 2024"
+  },
+  {
+    "objectID": "cv.html#skills",
+    "href": "cv.html#skills",
+    "title": "CV",
+    "section": "Skills",
+    "text": "Skills\nOptimization: mixed-integer, bilevel and pessimistic bilevel programming; network optimization and interdiction; two-stage stochastic programming; distributionally robust optimization; CVaR; congestion and Stackelberg games; column-and-constraint generation, cutting-plane and Benders decomposition.\nComputing: Python (NumPy, pandas, Matplotlib), Gurobi, MATLAB, C/C++, R, LaTeX, Git; large-scale experiments on a Slurm cluster."
+  },
+  {
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Research",
+    "section": "",
+    "text": "I work on optimization problems where someone else moves after you: an attacker, a market, or nature. Most of my work is about computing those decisions exactly, not just approximately."
+  },
+  {
+    "objectID": "research.html#interdiction",
+    "href": "research.html#interdiction",
+    "title": "Research",
+    "section": "Interdicting selfish routing under congestion and uncertainty",
+    "text": "Interdicting selfish routing under congestion and uncertainty\n\n\nMain PhD project with Manish Bansal. Manuscript in preparation.\n\n\nIf an adversary can slow down a few links in a network, and the people using it re-route selfishly, which links should they hit? And how do you protect against it when you don’t know the demand?\n\nThink of a road network, a data network, or a fleet of AI agents sharing infrastructure. An interdictor with a budget penalizes some links. The users then route selfishly in a congestion game until no one can improve alone. Because a congestion game can have several equilibria, I take the pessimistic view: when ties occur, the equilibrium is the one least favorable to the interdictor. That makes this a three-level max–min–min problem, and since the users’ problem is an integer program, the usual duality or KKT reformulations don’t apply.\nWhat I built:\n\nTwo exact algorithms, with proofs that the bounds are valid and that they terminate: a column-and-constraint generation method that represents generated equilibria with indicator constraints, and a cutting-plane method with congestion-lifted optimality cuts, integer L-shaped cuts, and neighborhood cuts.\nA distributionally robust version over a Wasserstein ambiguity set, with both algorithms extended scenario by scenario and an LP separation step.\nA Python/Gurobi implementation tested in about 6,000 solver runs on a Slurm cluster.\n\n\n\n288 / 360instances solved to proven optimality within an hour by C&CG\n\n\n325 / 360instances where C&CG found the best known attack\n\n\n0.1%gap between decisions from 10 vs. 1,000 scenarios, out of sample\n\n\n\n\n\n\n\n\nNoteShow the formulation (sketch)\n\n\n\n\n\nInterdiction \\(x \\in X\\) (budgeted), user strategies \\(y \\in Y\\), arc loads \\(\\ell_a(y)\\), arc cost \\(c_a(\\ell, x_a)\\) increasing in load and in interdiction:\n\\[\n\\max_{x \\in X}\\; \\min_{y \\in \\mathcal{E}(x)} \\; \\sum_{a} \\ell_a(y)\\, c_a\\big(\\ell_a(y), x_a\\big),\n\\qquad\n\\mathcal{E}(x) = \\arg\\min_{y \\in Y} \\; \\sum_{a} \\sum_{j=1}^{\\ell_a(y)} c_a(j, x_a).\n\\]\nThe inner set \\(\\mathcal{E}(x)\\) is the set of pure Nash equilibria, characterized as minimizers of the Rosenthal potential. The middle “min” is the pessimistic selection. See the manuscript for the exact model."
+  },
+  {
+    "objectID": "research.html#microgrid",
+    "href": "research.html#microgrid",
+    "title": "Research",
+    "section": "Risk-averse scheduling for a data-center microgrid",
+    "text": "Risk-averse scheduling for a data-center microgrid\n\n\nWith Virginia Tech Electrical & Computer Engineering. Ongoing.\n\n\nA data center’s power demand and its renewable supply are both uncertain. How do you schedule generators so that the worst days don’t cause blackouts, without overspending on the average day?\n\n\nReformulated microgrid unit commitment and economic dispatch as a two-stage risk-averse stochastic MILP, using CVaR to control Expected Energy Not Served in the tail scenarios.\nDesigned and implemented Benders decomposition for it in Python/Gurobi; currently scaling to full data-center instances.\nRelated: a deterministic MILP for operating a water distribution system (tank net-contribution model), built as the base for a distributionally robust extension."
+  },
+  {
+    "objectID": "research.html#supply-chain",
+    "href": "research.html#supply-chain",
+    "title": "Research",
+    "section": "Pricing a product on the verge of withdrawal",
+    "text": "Pricing a product on the verge of withdrawal\n\n\nWith Anand Jacob Abraham (IIT Kharagpur). Submitted to Production Planning & Control, November 2026.\n\n\nA manufacturer sells an end-of-life product through two competing retailers, and one of them may lose demand without warning. What wholesale price should the manufacturer commit to, and when does a retailer walk away?\n\n\nModeled it as a two-period Stackelberg game with asymmetric probabilistic demand disruption and a committed wholesale price.\nDerived closed-form subgame-perfect equilibria in an interior regime and a KKT-characterized corner regime, including the exact threshold at which the disrupted retailer exits the clearance market.\nProved how the wholesale price responds in each regime, an exact profit-gap identity, and a lower bound on the manufacturer’s profit."
+  },
+  {
+    "objectID": "research.html#tides",
+    "href": "research.html#tides",
+    "title": "Research",
+    "section": "Making a tidal simulation actually run",
+    "text": "Making a tidal simulation actually run\n\n\nMaster’s thesis at NIT Calicut with Satyananda Panda, revisited in 2026. Manuscript in preparation.\n\n\nMy thesis modeled tides in the Gulf of Khambhat with shallow-water equations, but the solver couldn’t simulate more than a short window. Two years later I found out why and fixed it.\n\n\nThe original implicit finite-volume/WENO solver (MATLAB) ran Newton solves with an \\(O(N^2)\\) dense finite-difference Jacobian at every step, at time steps far below the CFL limit.\nI redesigned it as an explicit WENO5 + SSP-RK3 scheme with linear cost per step, in Python. Multi-cycle simulations went from intractable to seconds."
+  },
+  {
+    "objectID": "research.html#talks",
+    "href": "research.html#talks",
+    "title": "Research",
+    "section": "Talks",
+    "text": "Talks\n\n“Network Interdiction Problems Under Uncertainty and Distributional Ambiguity,” CCI Southwest Virginia Graduate Student Summit, Virginia Tech, 2026. Most Engaging Presentation Award."
+  },
+  {
+    "objectID": "research.html#manuscripts",
+    "href": "research.html#manuscripts",
+    "title": "Research",
+    "section": "Manuscripts",
+    "text": "Manuscripts\n\nA. M. Sunil and M. Bansal. “Pessimistic Interdiction of Selfish Routing with Congestion and Uncertainty for AI/SI Agents.” In preparation, 2026.\nA. M. Sunil and A. J. Abraham. “Inventory and Wholesale Pricing for Products on the Verge of Withdrawal: Retail Competition under Asymmetric Demand Disruption.” Under review at Production Planning & Control, 2026.\nA. M. Sunil and S. Panda. “Numerical Simulation of Tidal Dynamics in the Gulf of Khambhat.” In preparation, 2026."
+  },
+  {
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "I’ve been teaching mathematics in some form for more than five years, and I still find explaining an idea the fastest way to find out whether I understand it."
+  },
+  {
+    "objectID": "teaching.html#virginia-tech-graduate-teaching-assistant",
+    "href": "teaching.html#virginia-tech-graduate-teaching-assistant",
+    "title": "Teaching",
+    "section": "Virginia Tech, Graduate Teaching Assistant",
+    "text": "Virginia Tech, Graduate Teaching Assistant\nISE 3204 Manufacturing Processes, Fall 2026.\nISE 3424 Discrete-Event Simulation, Summer 2026. Ran the labs for about 40 students, including Monte Carlo modeling with @RISK.\nLean Manufacturing, Fall 2025. Rated “Excellent” on the GTA evaluation."
+  },
+  {
+    "objectID": "teaching.html#before-graduate-school",
+    "href": "teaching.html#before-graduate-school",
+    "title": "Teaching",
+    "section": "Before graduate school",
+    "text": "Before graduate school\nMathematics tutor, 5+ years, high school through undergraduate level.\nUnited Academy, founder. I started an online tuition centre during the COVID-19 lockdown."
+  }
+]
