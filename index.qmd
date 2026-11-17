@@ -1,0 +1,100 @@
+---
+pagetitle: "Ann Mariya Sunil"
+page-layout: custom
+section-divs: false
+include-after-body:
+  text: |
+    <script src="assets/network.js"></script>
+---
+
+```{=html}
+<div class="home-wrap">
+
+<section class="hero">
+  <div>
+    <h1>Ann Mariya Sunil</h1>
+    <p class="lede">I study what happens when an adversary or uncertainty hits a network, and I build exact algorithms that find the decisions that hold up.</p>
+    <p class="seeking">PhD student in operations research at Virginia Tech, looking for a Summer 2027 internship in optimization.</p>
+    <div class="hero-links">
+      <a class="solid" href="research.html">See my research</a>
+      <a href="cv.html">CV</a>
+      <a href="https://www.linkedin.com/in/ann-mariya-sunil-804a83195">LinkedIn</a>
+      <a href="mailto:annmariyasunil@vt.edu">Email</a>
+    </div>
+  </div>
+
+  <figure class="map" aria-label="Interactive network interdiction demo">
+    <canvas id="net" role="img" aria-label="A road network where six drivers travel from s to t. Clicking a road blocks it and the drivers re-route."></canvas>
+    <div class="map-bar">
+      <div class="readout" aria-live="polite">
+        <span>Total travel time <b id="net-cost">0</b> <span class="delta" id="net-delta"></span></span>
+        <span>Blocks left <b id="net-left">3</b></span>
+      </div>
+      <div>
+        <button id="net-busiest" type="button">Block busiest road</button>
+        <button id="net-reset" type="button">Reset</button>
+      </div>
+    </div>
+    <figcaption class="map-caption"><span id="net-msg">Click any road to block it.</span> Six drivers go from <i>s</i> to <i>t</i>, each taking the fastest route for <span class="legend-flow">themselves</span>; busier roads are slower. You get three <span class="legend-cut">blocks</span>. This is a toy version of the network interdiction problems I solve.</figcaption>
+  </figure>
+</section>
+
+<section class="home-section">
+  <h2>What I work on</h2>
+  <ul class="work-list">
+    <li>
+      <div>
+        <h3><a href="research.html#interdiction">Attacking congested networks where users route selfishly</a></h3>
+        <p>An interdictor slows down roads on a budget; travelers settle into a new equilibrium. I compute the attack that hurts most, also when demand is uncertain, with two exact algorithms.</p>
+      </div>
+      <div class="status">Main PhD project, with Manish Bansal</div>
+    </li>
+    <li>
+      <div>
+        <h3><a href="research.html#microgrid">Risk-averse scheduling for a data-center microgrid</a></h3>
+        <p>A two-stage stochastic MILP that limits energy shortfalls in the worst scenarios using CVaR, solved by Benders decomposition.</p>
+      </div>
+      <div class="status">With VT Electrical &amp; Computer Engineering</div>
+    </li>
+    <li>
+      <div>
+        <h3><a href="research.html#supply-chain">Pricing a product that is about to be withdrawn</a></h3>
+        <p>A Stackelberg game between a manufacturer and two competing retailers when one of them may lose demand. Closed-form equilibria and when a retailer exits.</p>
+      </div>
+      <div class="status">Under review, Production Planning &amp; Control</div>
+    </li>
+    <li>
+      <div>
+        <h3><a href="research.html#tides">Making a tidal simulation actually run</a></h3>
+        <p>Rebuilt my master's thesis solver for shallow-water equations, taking multi-cycle simulations from intractable to seconds.</p>
+      </div>
+      <div class="status">Manuscript in preparation</div>
+    </li>
+  </ul>
+</section>
+
+<section class="home-section">
+  <h2>Background</h2>
+  <div>
+    <p>I'm a first-year PhD student in Industrial &amp; Systems Engineering at Virginia Tech, advised by Manish Bansal. I came to operations research from mathematics: an M.Sc. from NIT Calicut, where I graduated first in my class with the Institute Gold Medal, and a B.Sc. (Honours) from St. Stephen's College, Delhi.</p>
+    <p>My tools are mixed-integer and bilevel programming, stochastic and distributionally robust optimization, and decomposition methods, implemented in Python and Gurobi and run at scale on a computing cluster.</p>
+  </div>
+</section>
+
+<section class="home-section">
+  <h2>News</h2>
+  <ul class="news">
+    <li><time datetime="2026-11">Nov 2026</time><span>Submitted a paper on retail competition under demand disruption to <i>Production Planning &amp; Control</i>.</span></li>
+    <li><time datetime="2026-05">May 2026</time><span>Selected for AI-SCORE, a national school for OR and CS/AI PhD students (UIUC and Chicago).</span></li>
+    <li><time datetime="2026">2026</time><span>Won the Most Engaging Presentation award at the CCI Southwest Virginia Graduate Student Summit.</span></li>
+    <li><time datetime="2024">2024</time><span>Graduated first in my M.Sc. class at NIT Calicut, Institute Gold Medal.</span></li>
+  </ul>
+</section>
+
+<section class="home-section">
+  <h2>Outside research</h2>
+  <p>I make videos for my YouTube channel, play sports, and take dance breaks. I've also tutored mathematics for more than five years and started an online tuition centre during the COVID-19 lockdown.</p>
+</section>
+
+</div>
+```

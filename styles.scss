@@ -1,0 +1,253 @@
+/*-- scss:defaults --*/
+
+// Palette: a transit-map / survey-sheet feel. Cool chalk paper, slate ink,
+// teal for flow, crimson for interdiction. Teal + crimson are used ONLY to
+// mean "flow" and "cut" — on the hero map and as small accents elsewhere.
+$paper:  #F2F4F1;
+$ink:    #18202E;
+$muted:  #5A6474;
+$line:   #CDD4CD;
+$flow:   #12807D;
+$cut:    #C42B3B;
+
+$body-bg: $paper;
+$body-color: $ink;
+$link-color: $flow;
+$primary: $flow;
+$navbar-bg: $paper;
+$navbar-fg: $ink;
+$navbar-hl: $flow;
+$footer-bg: $paper;
+$footer-fg: $muted;
+
+$font-family-sans-serif: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+$font-family-serif: "Source Serif 4", Georgia, serif;
+$font-family-base: $font-family-serif;
+$headings-font-family: $font-family-sans-serif;
+$headings-font-weight: 650;
+$font-size-root: 18px;
+$line-height-base: 1.62;
+
+$code-color: #8A2433;
+$border-radius: 4px;
+
+/*-- scss:rules --*/
+
+:root {
+  --paper: #{$paper};
+  --ink: #{$ink};
+  --muted: #{$muted};
+  --line: #{$line};
+  --flow: #{$flow};
+  --cut: #{$cut};
+}
+
+body { font-optical-sizing: auto; }
+
+// Readable measure for prose pages
+main.content { max-width: 44rem; }
+.page-full main.content, .page-layout-full main.content { max-width: none; }
+
+h1, h2, h3, h4 { letter-spacing: -0.015em; }
+h1.title { font-size: 2.6rem; font-weight: 700; letter-spacing: -0.03em; }
+h2 { font-size: 1.55rem; margin-top: 2.6rem; border-bottom: none; }
+h3 { font-size: 1.15rem; margin-top: 1.8rem; }
+
+.navbar {
+  border-bottom: 1px solid var(--line);
+  font-family: $font-family-sans-serif;
+}
+.navbar-brand .navbar-title { font-weight: 700; letter-spacing: -0.01em; }
+.nav-link { font-weight: 500; }
+.nav-link.active { box-shadow: inset 0 -2px 0 var(--flow); }
+
+a { text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { color: var(--ink); }
+
+:focus-visible { outline: 2px solid var(--flow); outline-offset: 3px; }
+
+.nav-footer { border-top: 1px solid var(--line); font-family: $font-family-sans-serif; font-size: 0.85rem; }
+
+// ---------------------------------------------------------------- home --
+
+.home-wrap { max-width: 72rem; margin: 0 auto; padding: 0 1.25rem; }
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 2.5rem;
+  align-items: center;
+  padding: 3.5rem 0 3rem;
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 6vw, 4.6rem);
+  line-height: 0.95;
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  margin: 0 0 1.25rem;
+}
+.hero .lede {
+  font-size: 1.22rem;
+  line-height: 1.5;
+  max-width: 30rem;
+  margin-bottom: 1.25rem;
+}
+.hero .seeking {
+  font-family: $font-family-sans-serif;
+  font-size: 0.95rem;
+  border-left: 3px solid var(--flow);
+  padding: 0.2rem 0 0.2rem 0.8rem;
+  margin-bottom: 1.6rem;
+  color: var(--ink);
+}
+.hero-links { display: flex; flex-wrap: wrap; gap: 0.6rem; font-family: $font-family-sans-serif; }
+.hero-links a {
+  display: inline-block;
+  padding: 0.45rem 0.95rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 550;
+  font-size: 0.92rem;
+}
+.hero-links a.solid { background: var(--ink); color: var(--paper); }
+.hero-links a:hover { background: var(--flow); border-color: var(--flow); color: #fff; }
+
+// The interactive map
+.map {
+  background: #FBFCFA;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.9rem 0.9rem 0.75rem;
+}
+.map canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+.map-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: $font-family-sans-serif;
+  font-size: 0.88rem;
+  padding: 0.55rem 0.2rem 0;
+  border-top: 1px solid var(--line);
+  margin-top: 0.4rem;
+}
+.map-bar .readout { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+.map-bar .readout b { font-variant-numeric: tabular-nums; font-weight: 650; }
+.map-bar .delta { color: var(--cut); font-weight: 650; font-variant-numeric: tabular-nums; }
+.map-bar button {
+  font: inherit;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+.map-bar button:hover { border-color: var(--ink); }
+.map-caption {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0.6rem 0.2rem 0;
+  line-height: 1.45;
+}
+.legend-flow, .legend-cut { font-weight: 600; }
+.legend-flow { color: var(--flow); }
+.legend-cut { color: var(--cut); }
+
+// Sections below the hero
+.home-section {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 1fr);
+  gap: 2rem;
+  padding: 2.4rem 0;
+  border-top: 1px solid var(--line);
+}
+.home-section > h2 {
+  margin: 0.15rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--muted);
+}
+.home-section p { max-width: 40rem; }
+
+.work-list { list-style: none; padding: 0; margin: 0; }
+.work-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 11rem;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+.work-list li:first-child { padding-top: 0; }
+.work-list li:last-child { border-bottom: none; }
+.work-list h3 { margin: 0 0 0.3rem; font-size: 1.15rem; }
+.work-list h3 a { color: var(--ink); text-decoration: none; }
+.work-list h3 a:hover { color: var(--flow); text-decoration: underline; }
+.work-list p { margin: 0; color: var(--ink); }
+.work-list .status {
+  font-family: $font-family-sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: right;
+  padding-top: 0.2rem;
+}
+
+.news { list-style: none; padding: 0; margin: 0; }
+.news li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; padding: 0.35rem 0; }
+.news time { font-family: $font-family-sans-serif; font-size: 0.9rem; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 0.12rem; }
+
+// --------------------------------------------------------- inner pages --
+
+.project { padding-bottom: 0.5rem; }
+.project .one-liner {
+  font-size: 1.15rem;
+  line-height: 1.5;
+  border-left: 3px solid var(--flow);
+  padding-left: 1rem;
+  margin: 1rem 0 1.4rem;
+}
+.project-meta {
+  font-family: $font-family-sans-serif;
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: -0.4rem;
+}
+.result-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1rem;
+  margin: 1.2rem 0;
+  font-family: $font-family-sans-serif;
+}
+.result-row div { border-top: 2px solid var(--ink); padding-top: 0.5rem; font-size: 0.92rem; line-height: 1.4; }
+.result-row strong { display: block; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+
+.callout { border-radius: 8px; }
+div.callout.callout-style-simple, div.callout { border-left-color: var(--flow) !important; }
+.work-list h3 { font-weight: 600; }
+
+// Blog listing
+.quarto-listing-default .listing-title { font-family: $font-family-sans-serif; }
+
+// ------------------------------------------------------------- mobile --
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding-top: 2rem; gap: 1.8rem; }
+  .home-section { grid-template-columns: 1fr; gap: 0.8rem; }
+  .work-list li { grid-template-columns: 1fr; gap: 0.2rem; }
+  .work-list .status { text-align: left; padding-top: 0; }
+  .map canvas { aspect-ratio: 4 / 3.4; }
+  .map-bar { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

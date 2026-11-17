@@ -1,0 +1,37 @@
+---
+title: "CV"
+---
+
+::: {.hero-links}
+[Download CV (PDF)](files/Ann_Mariya_Sunil_CV.pdf){.solid}
+:::
+
+## Education
+
+**Virginia Tech**, Ph.D., Industrial & Systems Engineering (Operations Research), 2025 to 2029 (expected). GPA 3.78/4.00. Advisor: Manish Bansal.
+
+**National Institute of Technology Calicut**, M.Sc., Mathematics, 2024. GPA 9.64/10, ranked first in the class, Institute Gold Medal.
+
+**St. Stephen's College, University of Delhi**, B.Sc. (Honours), Mathematics, 2022. GPA 9.216/10.
+
+## Research experience
+
+**Graduate Research Assistant**, Virginia Tech ISE, 2026 to present. Network interdiction under congestion and distributional ambiguity; risk-averse microgrid scheduling.
+
+**Research Assistant**, IIT Kharagpur, Industrial & Systems Engineering, 2024 to 2025. Game-theoretic supply chain models under demand disruption.
+
+**Summer Research Fellow**, IISER Thiruvananthapuram, 2023. Science Academies' Summer Research Fellowship, one of 63 selected nationwide.
+
+## Awards
+
+- Most Engaging Presentation, CCI Southwest Virginia Graduate Student Summit, 2026
+- AI-SCORE 2026, selected cohort (UIUC and Chicago)
+- Institute Gold Medal, M.Sc. Mathematics, NIT Calicut, 2024
+- GATE 2024 Mathematics, All India Rank 977
+- Mixed Integer Programming International Workshop, IIT Bombay, 2024
+
+## Skills
+
+**Optimization:** mixed-integer, bilevel and pessimistic bilevel programming; network optimization and interdiction; two-stage stochastic programming; distributionally robust optimization; CVaR; congestion and Stackelberg games; column-and-constraint generation, cutting-plane and Benders decomposition.
+
+**Computing:** Python (NumPy, pandas, Matplotlib), Gurobi, MATLAB, C/C++, R, LaTeX, Git; large-scale experiments on a Slurm cluster.

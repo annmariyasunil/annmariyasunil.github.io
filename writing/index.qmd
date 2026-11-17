@@ -1,0 +1,13 @@
+---
+title: "Writing"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  fields: [date, title, description, categories, reading-time]
+---
+
+Notes on optimization: models explained with code, algorithms built from scratch, and small experiments.

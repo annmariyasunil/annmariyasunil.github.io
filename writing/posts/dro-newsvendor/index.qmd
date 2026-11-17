@@ -1,0 +1,83 @@
+---
+title: "How many samples does a newsvendor need?"
+description: "Sample average approximation looks great on the data it was fit to. Here is how badly it can do on new days, and what a Wasserstein ball changes."
+date: 2026-11-15
+categories: [stochastic programming, DRO, python]
+draft: true          # remove this line when the post is finished
+jupyter: python3
+---
+
+<!--
+STARTER DRAFT. The code below runs; the prose in the last two sections is an
+outline for you to write in your own words. Delete this comment when done.
+-->
+
+Every OR course starts stochastic programming with the newsvendor: order $q$ units before seeing demand $\xi$, pay $c_u$ for each unit short and $c_o$ for each unit left over.
+
+$$
+\min_{q \ge 0} \; \mathbb{E}_{P}\big[\, c_u (\xi - q)^+ + c_o (q - \xi)^+ \,\big]
+$$
+
+If we knew $P$, the answer is the critical-ratio quantile $q^\star = F^{-1}\!\big(c_u/(c_u+c_o)\big)$. We never know $P$. We have $N$ past days.
+
+## Sample average approximation
+
+Replace $P$ with the empirical distribution of the $N$ observations. The optimal order is then the empirical quantile.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng(7)
+cu, co = 4.0, 1.0
+ratio = cu / (cu + co)
+
+def demand(n):
+    # a skewed demand distribution the decision maker does not know
+    return rng.lognormal(mean=4.0, sigma=0.6, size=n)
+
+def cost(q, xi):
+    return cu * np.maximum(xi - q, 0) + co * np.maximum(q - xi, 0)
+
+test = demand(200_000)                       # "the future"
+q_true = np.quantile(test, ratio)
+best = cost(q_true, test).mean()
+
+Ns = [5, 10, 20, 50, 100, 500]
+gaps = []
+for N in Ns:
+    g = []
+    for _ in range(400):
+        q = np.quantile(demand(N), ratio)    # SAA decision
+        g.append(cost(q, test).mean() / best - 1)
+    gaps.append(np.array(g) * 100)
+```
+
+```{python}
+#| label: fig-saa
+#| fig-cap: "Out-of-sample cost of the SAA order above the true optimum, over 400 repetitions per sample size."
+ink, teal = "#18202E", "#12807D"
+fig, ax = plt.subplots(figsize=(7, 3.6), facecolor="none")
+ax.set_facecolor("none")
+ax.boxplot(gaps, showfliers=False, patch_artist=True,
+           boxprops=dict(facecolor="#D3E8E6", edgecolor=teal),
+           medianprops=dict(color=ink, linewidth=2),
+           whiskerprops=dict(color=teal), capprops=dict(color=teal))
+ax.set_xticks(range(1, len(Ns) + 1), [str(n) for n in Ns])
+ax.set_xlabel("number of past days N")
+ax.set_ylabel("extra cost vs. optimum (%)")
+ax.spines[["top", "right"]].set_visible(False)
+plt.tight_layout()
+```
+
+## Why small samples hurt
+
+*Write this section:* the empirical quantile at a high critical ratio sits in the tail, where five or ten samples say almost nothing. Point at the spread in @fig-saa for small $N$.
+
+## Adding a Wasserstein ball
+
+*Write this section:* replace the empirical distribution with the worst case over all distributions within Wasserstein distance $\varepsilon$ of it. Show the reformulation, solve it with gurobipy or by hand, and rerun the experiment above with DRO decisions. Things to discuss:
+
+- what happens with unbounded support (the worst-case term becomes a constant, so the order does not change) versus bounded support
+- how to pick $\varepsilon$ (cross-validation, or the rate from the concentration results)
+- where the DRO order helps and where it is just conservative
